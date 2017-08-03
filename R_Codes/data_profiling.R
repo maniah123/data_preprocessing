@@ -1,5 +1,5 @@
 freqTableOfVector = function(x){
-  freqTable = data.frame(table(colData))
+  freqTable = data.frame(table(x))
   freqTable = freqTable[order(freqTable$Freq, decreasing=T),]
   return(freqTable)
 }
@@ -103,4 +103,5 @@ getDataProfile = function(Data, maxNumTopLevelsToShowInFreqTable = 10, minNumLev
 
 }
 
-summaryDF = getDataProfile(data.frame(iris))
+#summaryDF = getDataProfile(data.frame(iris))
+#print(summaryDF)
