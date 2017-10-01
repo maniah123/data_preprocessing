@@ -8,7 +8,7 @@ freqTableToString = function(x){
   return(paste(x[,1], x[,2], sep=':', collapse='___'))
 }
 
-getDataProfile = function(Data, maxNumTopLevelsToShowInFreqTable = 10, minNumLevelsToBeConsideredAsNotFactor = 10)
+getDataProfile = function(Data, maxNumTopLevelsToShowInFreqTable = 10, minNumLevelsToBeConsideredAsNotFactor = 10, missing_value=NA)
 {
   numVars = ncol(Data)
   numRows = nrow(Data)
@@ -53,7 +53,7 @@ getDataProfile = function(Data, maxNumTopLevelsToShowInFreqTable = 10, minNumLev
     if(dtype=='integer' & is.factor(colData)) dtype='factor'
     dTypeVec[i] = dtype
     numUniqueVec[i] = length(unique(colData))
-    numMissingVec[i] = sum(is.na(colData))
+    if(is.na(missing_value)) numMissingVec[i] = sum(is.na(colData)) else numMissingVec[i] = sum(colData==missing_value)
     percMissingVec[i] = round(100*numMissingVec[i]/numRows,2)
 
     #Handle Factors
